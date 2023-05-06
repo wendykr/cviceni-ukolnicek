@@ -36,19 +36,19 @@ fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
 let checkboxElm = document.querySelector('#checkbox-undone');
 
 const check = () => {
-    if (checkboxElm) {
+    if (checkboxElm.checked === true) {
         fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
             .then((response) => response.json())
             .then((data) =>
             renderTasks(data));
-            checkboxElm = false;
+            checkboxElm.checked = false;
     } else {
-        if (!checkboxElm) {
+        if (checkboxElm.checked === false) {
             fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
                 .then((response) => response.json())
                 .then((data) =>
                 renderTasks(data));
-                checkboxElm = true;
+                checkboxElm.checked = true;
         }
     }
 }
