@@ -1,6 +1,6 @@
 console.log('funguju!');
 
-const Taks = (props) => {
+const Task = (props) => {
 
     const {name, due, done} = props;
     
@@ -10,7 +10,7 @@ const Taks = (props) => {
                 <div class="task__name">${name}</div>
                 <div class="task__due">${due}</div>
             </div>
-            <div class="task__done">${done}✓</div>
+            <div class="task__done">${done}</div>
         </div>
     `
 }
@@ -20,35 +20,30 @@ const renderTasks = (items) => {
     const todoTasksElm = document.querySelector('.todo__tasks');
 
     todoTasksElm.innerHTML = items
-        .map(oneTask => Taks(oneTask))
+        .map(oneTask => Task(oneTask))
         .join('');
 }
 
 fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
     .then((response) => response.json())
     .then((data) =>
-        //console.log(data));
         renderTasks(data));
 
 let checkboxElm = document.querySelector('#checkbox-undone');
 
 const check = () => {
     if (checkboxElm) {
-        console.log('check');
         fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
             .then((response) => response.json())
             .then((data) =>
-            //console.log(data));
             renderTasks(data));
             checkboxElm = false;
 
     } else {
         if (!checkboxElm) {
-            console.log('uncheck');
             fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
                 .then((response) => response.json())
                 .then((data) =>
-                //console.log(data));
                 renderTasks(data));
                 checkboxElm = true;
         }
