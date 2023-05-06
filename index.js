@@ -7,11 +7,11 @@ const Task = (props) => {
     let icon;
 
     if (done === true) {
-        icon = `✓`
+        icon = `✓`;
     }
 
     if (done === false) {
-        icon = ``
+        icon = ``;
     }
 
     return `
