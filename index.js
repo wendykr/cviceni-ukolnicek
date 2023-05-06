@@ -1,17 +1,11 @@
-console.log('funguju!');
-
 const Task = (props) => {
 
     const {name, due, done} = props;
 
-    let icon;
+    let icon = '';
 
-    if (done === true) {
-        icon = `✓`;
-    }
-
-    if (done === false) {
-        icon = ``;
+    if (done) {
+        icon = '✓';
     }
 
     return `
@@ -48,7 +42,6 @@ const check = () => {
             .then((data) =>
             renderTasks(data));
             checkboxElm = false;
-
     } else {
         if (!checkboxElm) {
             fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
